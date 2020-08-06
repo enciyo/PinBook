@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_gravity="center"
+  android:background="@android:color/white"
+  android:gravity="center"
+  android:orientation="vertical"
+  tools:context=".ui.login.LoginFragment">
+
+
+  <LinearLayout
+    android:orientation="vertical"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/logoImage"
+      android:layout_width="@dimen/_140sdp"
+      android:layout_height="@dimen/_70sdp"
+      android:layout_gravity="center"
+      android:transitionName="logo"
+      android:scaleType="centerCrop"
+      app:srcCompat="@drawable/logo_transparent" />
+
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_margin="@dimen/_32sdp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputUsername"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:theme="@style/InputTextStyle"
+        android:textColorHint="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_59sdp"
+        android:transitionName="username"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        android:hint="Username">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/editTextUsername"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_40sdp"
+          android:inputType="textPersonName"
+          android:singleLine="true"
+          android:textColor="@android:color/black"
+          android:textColorHint="@android:color/black" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+      <View
+        android:id="@+id/displayView"
+        android:transitionName="displayName"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+      <View
+        android:id="@+id/emailView"
+        android:transitionName="email"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:theme="@style/InputTextStyle"
+        android:textColorHint="@color/black"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_2sdp"
+        app:errorEnabled="true"
+        android:layout_height="@dimen/_59sdp"
+        app:hintEnabled="true"
+        android:transitionName="password"
+        android:nextFocusDown="@id/buttonLogin"
+        app:passwordToggleEnabled="true"
+        android:hint="Password">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/editTextPassword"
+          android:textColorHint="@android:color/black"
+          android:textColor="@android:color/black"
+          android:inputType="textPassword"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_40sdp"/>
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+      android:animateLayoutChanges="true"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:transitionName="buttonFav"
+        app:lottie_colorFilter="@color/grey_900"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="@dimen/_42sdp"/>
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogin"
+        android:layout_width="@dimen/_90sdp"
+        android:transitionName="button"
+        android:text="Login"
+        app:backgroundTint="@color/black"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_height="wrap_content"/>
+
+
+
+    </FrameLayout>
+
+
+
+
+
+  </LinearLayout>
+
+
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/_32sdp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:layout_width="wrap_content"
+      android:textColor="@color/grey_800"
+      android:textSize="@dimen/_9sdp"
+      android:text="Don't have an account?"
+      android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/buttonRegister"
+      style="@style/Widget.MaterialComponents.Button.TextButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="REGISTER"
+      android:textAllCaps="false"
+      android:textColor="@color/red_600"
+      android:textStyle="bold"
+      />
+
+
+  </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

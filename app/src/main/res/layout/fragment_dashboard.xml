@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/swipeRefreshLayout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white"
+  android:overScrollMode="never"
+  tools:context=".ui.dashboard.DashboardFragment">
+
+
+  <androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/textViewShowCaseTitle"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:clickable="false"
+        android:text="Discovery"
+        android:textAllCaps="false"
+        android:textColor="@color/grey_900"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.viewpager.widget.ViewPager
+          android:id="@+id/viewPagerShowCase"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_190sdp"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:clipToPadding="false"
+          android:overScrollMode="never"
+          android:paddingBottom="@dimen/_24sdp"
+          android:paddingTop="@dimen/_24sdp"
+          tools:background="@color/red_600" />
+
+        <com.airbnb.lottie.LottieAnimationView
+          android:id="@+id/progressBarShowCase"
+          android:layout_width="@dimen/_32sdp"
+          android:layout_height="@dimen/_32sdp"
+          android:layout_gravity="center"
+          app:lottie_autoPlay="true"
+          app:lottie_colorFilter="@color/grey_900"
+          app:lottie_loop="true"
+          app:lottie_rawRes="@raw/splash_loading"
+          app:lottie_speed="0.6" />
+      </FrameLayout>
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewShowCaseBookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@color/grey_900"
+        tools:text="Aşkın Metafiziği" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewPopularBooks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="Popular Books"
+        android:textColor="@color/grey_900"
+        android:textSize="@dimen/_21sdp"
+        android:textStyle="bold" />
+
+
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recyclerViewPopularBooks"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:overScrollMode="never"
+          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+          tools:listitem="@layout/item_books" />
+
+        <com.airbnb.lottie.LottieAnimationView
+          android:id="@+id/progressBarPopularBooks"
+          android:layout_width="@dimen/_32sdp"
+          android:layout_height="@dimen/_32sdp"
+          android:layout_gravity="center"
+          app:lottie_autoPlay="true"
+          app:lottie_colorFilter="@color/grey_900"
+          app:lottie_loop="true"
+          app:lottie_rawRes="@raw/splash_loading"
+          app:lottie_speed="0.6" />
+
+
+      </FrameLayout>
+
+
+
+
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/grabh_publisher"
+  app:startDestination="@id/publisherFragment">
+
+  <fragment
+    android:id="@+id/publisherFragment"
+    android:name="com.enciyo.pinbook.ui.books.BooksFragment"
+    android:label="fragment_publisher"
+    tools:layout="@layout/fragment_books" />
+</navigation>

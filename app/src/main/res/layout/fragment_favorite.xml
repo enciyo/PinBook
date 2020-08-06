@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white"
+  tools:context=".ui.fav.FavoriteFragment">
+
+  <LinearLayout
+    android:paddingTop="@dimen/_32sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/_80sdp"
+      android:layout_gravity="center"
+      app:srcCompat="@drawable/logo_transparent"
+      tools:src="@tools:sample/avatars" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textColor="@color/grey_900"
+      android:text="Mustafa Kılıç" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textColor="@color/grey_900"
+      android:text="enciyo" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:layout_marginTop="@dimen/_8sdp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textStyle="bold"
+      android:textColor="@color/grey_900"
+      android:textSize="@dimen/_21sdp"
+      android:text="Favorite Books" />
+
+    <View
+      android:layout_marginTop="@dimen/_4sdp"
+      android:layout_marginBottom="@dimen/_4sdp"
+      android:layout_gravity="center"
+      android:background="@color/grey_700"
+      android:layout_width="@dimen/_48sdp"
+      android:layout_height="1dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerViewFavoriteBooks"
+      android:paddingTop="@dimen/_10sdp"
+      android:overScrollMode="never"
+      android:clipToPadding="false"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      tools:listitem="@layout/item_books" />
+
+  </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

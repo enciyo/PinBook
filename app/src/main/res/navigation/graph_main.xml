@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/graph_main"
+  app:startDestination="@id/splashFragment">
+
+  <fragment
+    android:id="@+id/splashFragment"
+    android:name="com.enciyo.pinbook.ui.splash.SplashFragment"
+    android:label="fragment_splash"
+    tools:layout="@layout/fragment_splash" >
+    <action
+      android:id="@+id/actionLoginFragment"
+      app:destination="@id/loginFragment"
+      app:enterAnim="@anim/fragment_fade_enter"
+      app:exitAnim="@anim/fragment_fade_enter"
+      app:popEnterAnim="@anim/fragment_fade_enter"
+      app:popExitAnim="@anim/fragment_fade_enter" />
+    <action
+      android:id="@+id/action_splashFragment_to_mainFragment"
+      app:destination="@id/mainFragment"
+      app:enterAnim="@anim/fragment_fade_enter"
+      app:exitAnim="@anim/fragment_fade_enter"
+      app:popEnterAnim="@anim/fragment_fade_enter"
+      app:popExitAnim="@anim/fragment_fade_enter" />
+  </fragment>
+  <fragment
+    android:id="@+id/loginFragment"
+    android:name="com.enciyo.pinbook.ui.login.LoginFragment"
+    android:label="fragment_login"
+    tools:layout="@layout/fragment_login" >
+    <action
+      android:id="@+id/actionRegisterFragment"
+      app:destination="@id/registerFragment" />
+    <action
+      android:id="@+id/action_loginFragment_to_mainFragment"
+      app:destination="@id/mainFragment"
+      app:enterAnim="@anim/fragment_fade_enter"
+      app:exitAnim="@anim/fragment_fade_enter"
+      app:popEnterAnim="@anim/fragment_fade_enter"
+      app:popExitAnim="@anim/fragment_fade_enter" />
+  </fragment>
+  <fragment
+    android:id="@+id/registerFragment"
+    android:name="com.enciyo.pinbook.ui.register.RegisterFragment"
+    android:label="fragment_register"
+    tools:layout="@layout/fragment_register" />
+  <fragment
+    android:id="@+id/mainFragment"
+    android:name="com.enciyo.pinbook.ui.main.MainFragment"
+    android:label="fragment_main"
+    tools:layout="@layout/fragment_main" />
+</navigation>

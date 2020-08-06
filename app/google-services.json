@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1053468360320",
+    "firebase_url": "https://pinbook-28e99.firebaseio.com",
+    "project_id": "pinbook-28e99",
+    "storage_bucket": "pinbook-28e99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053468360320:android:819be44573f8bd160f3065",
+        "android_client_info": {
+          "package_name": "com.enciyo.pinbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053468360320-dlp1onundni1aveevtnglefk758n37uf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmN_2Lmy8iWxeCC1L5h918PLQvsclblwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053468360320-dlp1onundni1aveevtnglefk758n37uf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

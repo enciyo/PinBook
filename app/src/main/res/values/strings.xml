@@ -1,0 +1,11 @@
+<resources>
+  <string name="app_name">PinBook</string>
+  <string name="NoConnection">Internet yok</string>
+  <string name="DisconnectNetwork">İnternet bağlantısı koptu</string>
+  <string name="TxtConnectedNetwork">İnternete Tekrar bağlandı</string>
+  <string name="UnknowError">PinBook serverlerına bağlanırken bir hata ile karşılaşıldı.</string>
+  <string name="LoginSuccesMessage">\"Giriş Başarılı, Hoşgeldin. \"</string>
+  <string name="RegisterValidationError">Tüm Alanları Doldurunuz!</string>
+  <string name="ValidationErrorUsername">Kullanıcı adı boş olamaz!</string>
+  <string name="ValidationErrorPassword">Parola boş olamaz!</string>
+</resources>

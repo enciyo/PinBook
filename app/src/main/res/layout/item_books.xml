@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@android:color/white"
+  android:padding="@dimen/_12sdp">
+
+  <LinearLayout
+    android:id="@+id/linearLayoutBookDetail"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/linearLayoutReviewCount"
+    app:layout_constraintStart_toEndOf="@id/imageViewBookImage"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textViewBookRating"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/red_500"
+      tools:text="5.0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textViewBookName"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/_4sdp"
+      android:textColor="@color/grey_900"
+      tools:text="The Water Cure" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textViewBookAuthor"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/_4sdp"
+      android:textColor="@color/grey_600"
+      tools:text="Martin Hyatt" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/linearLayoutReviewCount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Reviews"
+      android:textAlignment="center"
+      android:textColor="@color/grey_900"
+      android:textSize="@dimen/_10sdp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textViewReviewCount"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAlignment="center"
+      android:textColor="@color/grey_900"
+      android:textSize="@dimen/_18sdp"
+      tools:text="124" />
+
+  </LinearLayout>
+
+  <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/imageViewBookImage"
+    android:layout_width="@dimen/_70sdp"
+    android:layout_height="@dimen/_90sdp"
+    android:scaleType="centerCrop"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:srcCompat="@tools:sample/avatars" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

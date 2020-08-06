@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.splash.SplashFragment">
+
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:gravity="center"
+    android:layout_marginBottom="@dimen/_62sdp"
+    android:orientation="vertical">
+
+    <com.airbnb.lottie.LottieAnimationView
+      android:id="@+id/progressBar"
+      android:layout_width="@dimen/_32sdp"
+      android:layout_height="@dimen/_32sdp"
+      app:lottie_autoPlay="true"
+      app:lottie_loop="true"
+      app:lottie_speed="0.6"
+      app:lottie_colorFilter="@color/grey_900"
+      app:lottie_rawRes="@raw/splash_loading" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textView"
+      android:textAlignment="center"
+      android:textSize="@dimen/_9sdp"
+      android:textColor="@color/grey_900"
+      android:text="Loading database."
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+
+  </LinearLayout>
+
+
+</FrameLayout>
