@@ -18,3 +18,4 @@ fun <T> Flow<Event<T>>.onEventEach(action: KFunction1<T, Unit>): Flow<Event<T>> 
   }
 }
 
+x
