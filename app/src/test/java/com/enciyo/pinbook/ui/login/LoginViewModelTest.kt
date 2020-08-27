@@ -51,7 +51,7 @@ class LoginViewModelTest {
 
 
   //Objects
-  private val mReducer: Reducer<LoginViewState, LoginActionState, LoginSideEffect>
+  private val mReducer: Reducer<LoginViewState, LoginActionState, LoginRepoState>
     get() = ReducerImp("", State.create())
 
   private val mLoginViewModel: LoginViewModel
@@ -89,10 +89,12 @@ class LoginViewModelTest {
 
       val expectedView = LoginViewState(isFailure = true)
       val expectedAction = LoginActionState.ShowUnknownErrorMessage(R.string.UnknowError)
+      val repoState = LoginRepoState()
 
       lastState.assertViewState(expectedView)
       lastState.assertAction(expectedAction)
-      lastState.assertSideEffect(null)
+
+      lastState.assertSideEffect(repoState)
 
     }
   }
@@ -168,10 +170,9 @@ class LoginViewModelTest {
 
       val expectedView = LoginViewState(isLoading = true)
 
-      lastState.assertViewState(expectedView)
-      lastState.assertAction(null)
-      lastState.assertSideEffect(null)
-
+      assert(currentViewState() == expectedView)
+      assert(currentActionState() == null)
+      assert(currentRepoState()?.user?.value== null)
     }
   }
 
@@ -194,10 +195,9 @@ class LoginViewModelTest {
       val expectedAction = LoginActionState.ShowUnknownErrorMessage(R.string.NoConnection)
 
 
-      lastState.assertViewState(expectedView)
-      lastState.assertAction(expectedAction)
-      lastState.assertSideEffect(null)
-
+      assert(currentViewState() == expectedView)
+      assert(currentActionState() == expectedAction)
+      assert(currentRepoState()?.user?.value == null)
     }
   }
 

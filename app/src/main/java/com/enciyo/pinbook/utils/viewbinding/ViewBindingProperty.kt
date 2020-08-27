@@ -1,4 +1,4 @@
-package com.enciyo.library.viewbinding
+package com.enciyo.pinbook.utils.viewbinding
 
 import android.os.Handler
 import android.os.Looper

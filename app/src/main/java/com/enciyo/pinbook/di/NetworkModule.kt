@@ -4,6 +4,7 @@ import com.enciyo.pinbook.common.network.NetworkConnectivityManager
 import com.enciyo.pinbook.data.remote.PinBookService
 import com.enciyo.pinbook.data.remote.interceptors.NetworkConnectionInterceptor
 import com.enciyo.pinbook.utils.UrlConstants
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -31,6 +32,7 @@ class NetworkModule {
   @Singleton
   fun provideOkHttpClient(networkConnectionInterceptor: NetworkConnectionInterceptor) = OkHttpClient.Builder()
       .addInterceptor(networkConnectionInterceptor)
+      .addNetworkInterceptor(StethoInterceptor())
       .build()
 
 

@@ -37,6 +37,10 @@ class LocalStorageModule {
   @Singleton
   fun provideShowcaseDao(pinBookDatabase: PinBookDatabase) = pinBookDatabase.bookShowcaseDao()
 
+  @Provides
+  @Singleton
+  fun provideBookFavoriteEntity(pinBookDatabase: PinBookDatabase) = pinBookDatabase.bookFavoriteDao()
+
 
   @Provides
   @Singleton

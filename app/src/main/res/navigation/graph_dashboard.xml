@@ -9,5 +9,22 @@
     android:id="@+id/dashboardFragment"
     android:name="com.enciyo.pinbook.ui.dashboard.DashboardFragment"
     android:label="fragment_dashboard"
-    tools:layout="@layout/fragment_dashboard" />
+    tools:layout="@layout/fragment_dashboard" >
+    <action
+      android:id="@+id/actionDashboardToFav"
+      app:destination="@id/favoriteFragment2" />
+    <action
+        android:id="@+id/actionToDetail"
+        app:destination="@id/booksDetailFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/favoriteFragment2"
+    android:name="com.enciyo.pinbook.ui.fav.FavoriteFragment"
+    android:label="fragment_favorite"
+    tools:layout="@layout/fragment_favorite" />
+  <dialog
+      android:id="@+id/booksDetailFragment"
+      android:name="com.enciyo.pinbook.ui.detail.BooksDetailFragment"
+      android:label="fragment_books_detail"
+      tools:layout="@layout/fragment_books_detail" />
 </navigation>

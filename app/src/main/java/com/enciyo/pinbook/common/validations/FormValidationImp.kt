@@ -2,8 +2,6 @@ package com.enciyo.pinbook.common.validations
 
 import androidx.annotation.MainThread
 import com.enciyo.pinbook.common.CoScope
-import com.enciyo.pinbook.common.DefaultDispatcher
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
@@ -13,23 +11,15 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class FormValidationImp @Inject constructor(
-    @CoScope val coroutineScope: CoroutineScope,
-    @DefaultDispatcher val coroutineDispatcher: CoroutineDispatcher
+    @CoScope val coroutineScope: CoroutineScope
 ) : FormValidation {
 
-
-  private val _validationResult: MutableStateFlow<FormValidation.ValidationModel> = MutableStateFlow(FormValidation.ValidationModel("", FormValidation.ValidationType.Init))
-  override val validationFlow: MutableStateFlow<FormValidation.ValidationModel>
-    get() = _validationResult
-
   private val mValidationModels = mutableListOf<FormValidation.ValidationModel>()
+  private val mValidationFlow = MutableStateFlow(FormValidation.ValidationModel("", FormValidation.ValidationType.Init))
+  override val validationFlow: MutableStateFlow<FormValidation.ValidationModel> get() = mValidationFlow
+  override val isValid: Boolean get() = mValidationModels.find { it.isValid.not() } == null
 
-  override val isValid: Boolean
-    get() = mValidationModels.find { it.isValid.not() } == null
-
-  override fun checkAndValidateAll() {
-    mValidationModels.forEach(::setValid)
-  }
+  override fun checkAllIsValidate() = mValidationModels.forEach(::setValid)
 
   @MainThread
   override fun clear() {
@@ -39,9 +29,8 @@ class FormValidationImp @Inject constructor(
 
 
   override fun addValidation(model: FormValidation.ValidationModel) = apply {
-    if (mValidationModels.find { it.validationType == model.validationType } == null) {
+    if (model !in mValidationModels)
       mValidationModels.add(model)
-    }
   }
 
   override fun validator(model: FormValidation.ValidationModel, changeText: String) {
@@ -52,10 +41,7 @@ class FormValidationImp @Inject constructor(
   private fun setValid(model: FormValidation.ValidationModel) {
     val isValid = model.validationType.mustBe.invoke(model.text)
     model.isValid = isValid
-    _validationResult.value = model.copy()
+    mValidationFlow.value = model.copy()
   }
-
-
-
 
 }

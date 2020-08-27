@@ -14,6 +14,7 @@ class DashboardShowCaseAdapter : PagerAdapter() {
 
 
   var currentItems = mutableListOf<ShowcaseBooks>()
+  var listener: ((ShowcaseBooks) -> Unit)? = null
 
   override fun isViewFromObject(view: View, `object`: Any): Boolean {
     return view == `object`
@@ -35,9 +36,12 @@ class DashboardShowCaseAdapter : PagerAdapter() {
   }
 
 
-  class ShowCaseViewHolder(private val mBinding: ItemShowcaseBooksBinding) : RecyclerView.ViewHolder(mBinding.root) {
+  inner class ShowCaseViewHolder(private val mBinding: ItemShowcaseBooksBinding) : RecyclerView.ViewHolder(mBinding.root) {
     fun initView(book: ShowcaseBooks) {
       GlideApp.with(mBinding.root).load(book.imageUrl).into(mBinding.imageViewBook)
+      mBinding.root.setOnClickListener {
+        listener?.invoke(book)
+      }
     }
   }
 

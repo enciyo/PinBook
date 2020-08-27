@@ -1,16 +1,13 @@
 package com.enciyo.pinbook.ui.login
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import com.enciyo.library.viewbinding.viewBinding
 import com.enciyo.pinbook.R
 import com.enciyo.pinbook.common.PinToast
 import com.enciyo.pinbook.databinding.FragmentLoginBinding
@@ -18,10 +15,10 @@ import com.enciyo.pinbook.reducer.render
 import com.enciyo.pinbook.utils.addTextChangedListener
 import com.enciyo.pinbook.utils.safeErrorMessage
 import com.enciyo.pinbook.utils.setOnClickListener
+import com.enciyo.pinbook.utils.viewbinding.viewBinding
 import com.enciyo.pinbook.utils.visibilityWithScaleAnimation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
 
 
@@ -49,15 +46,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
 
     with(mViewModel) {
-      state
-          .render(
-              onState = ::viewUIState,
-              onAction = ::actionStateObserver,
-              onSideEffect = ::sideEffectObserver
-          )
-          .launchIn(viewLifecycleOwner.lifecycleScope)
+      render(
+          lifecycle = viewLifecycleOwner,
+          onState = ::renderViewState,
+          onAction = ::renderIfNotHandledActionState,
+          onRepo = ::renderRepoState
+      )
     }
-    navigateToMain()
   }
 
   private fun buttonLoginClicked() {
@@ -77,7 +72,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
   }
 
 
-  private fun viewUIState(viewState: LoginViewState) {
+  private fun renderViewState(viewState: LoginViewState) {
     with(mBinding) {
       buttonLogin.visibilityWithScaleAnimation(viewState.isButtonLoginVisible, mBinding.root)
       progressBar.isVisible = viewState.isLoading
@@ -103,19 +98,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
   }
 
 
-  private fun actionStateObserver(actionState: LoginActionState) {
+  private fun renderIfNotHandledActionState(actionState: LoginActionState) {
     when (actionState) {
       is LoginActionState.NavigateToMain -> navigateToMain()
       is LoginActionState.NavigateToRegister -> navigateToRegister()
       is LoginActionState.ShowWelcomeMessage -> mPinToast.showSuccessMessage(actionState.message)
       is LoginActionState.ShowApiErrorMessage -> mPinToast.showErrorMessage(actionState.message)
       is LoginActionState.ShowUnknownErrorMessage -> mPinToast.showErrorMessage(actionState.message)
-      is LoginActionState.ShowPopUp -> AlertDialog.Builder(requireContext()).setMessage("sada").show()
     }
   }
 
-  private fun sideEffectObserver(sideEffect: LoginSideEffect) {
-    sideEffect.user.observe(viewLifecycleOwner) {
+  private fun renderRepoState(repoState: LoginRepoState) {
+    repoState.user.observe(viewLifecycleOwner) {
       mPinToast.showErrorMessage(it.displayName.toString())
     }
   }

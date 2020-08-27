@@ -1,66 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/white"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  tools:context=".ui.books.BooksFragment">
-
-
- <LinearLayout
-   app:layout_constraintTop_toTopOf="parent"
-   android:orientation="vertical"
-   android:layout_width="match_parent"
-   android:layout_height="wrap_content">
-
-
-  <com.google.android.material.card.MaterialCardView
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_margin="@dimen/_12sdp"
-    app:cardCornerRadius="@dimen/_6sdp"
-    app:cardBackgroundColor="@color/grey_900"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-   <androidx.appcompat.widget.SearchView
-     android:id="@+id/searchViewBookQuery"
-     android:theme="@style/SearchViewStyle"
-     app:iconifiedByDefault="false"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"/>
-
-  </com.google.android.material.card.MaterialCardView>
-
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewCategories"
-    android:layout_marginStart="@dimen/_12sdp"
-    android:layout_marginEnd="@dimen/_12sdp"
-    android:layout_width="match_parent"
-    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-    app:spanCount="2"
-    android:orientation="horizontal"
-    tools:listitem="@layout/item_category"
-    android:layout_height="wrap_content"/>
-
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewBooks"
-    android:layout_marginStart="@dimen/_12sdp"
-    android:layout_marginEnd="@dimen/_12sdp"
-    android:layout_width="match_parent"
-    android:overScrollMode="never"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    android:orientation="vertical"
-    tools:listitem="@layout/item_books"
-    android:layout_height="wrap_content"/>
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.books.BooksFragment">
 
 
- </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            app:cardBackgroundColor="@color/grey_900"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchViewBookQuery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/SearchViewStyle"
+                app:iconifiedByDefault="false" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:orientation="horizontal"
+            tools:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            tools:listitem="@layout/item_category" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBooks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_books" />
 
 
-
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

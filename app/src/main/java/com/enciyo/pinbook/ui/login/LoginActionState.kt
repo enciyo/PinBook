@@ -1,9 +1,6 @@
 package com.enciyo.pinbook.ui.login
 
-import androidx.lifecycle.MutableLiveData
-import com.enciyo.pinbook.domain.model.User
 import com.enciyo.pinbook.reducer.ActionState
-import com.enciyo.pinbook.reducer.SideEffect
 
 
 sealed class LoginActionState : ActionState() {

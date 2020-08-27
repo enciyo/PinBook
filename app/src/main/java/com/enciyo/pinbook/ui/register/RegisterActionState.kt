@@ -1,7 +1,7 @@
 package com.enciyo.pinbook.ui.register
 
 import com.enciyo.pinbook.reducer.ActionState
-import com.enciyo.pinbook.reducer.SideEffect
+import com.enciyo.pinbook.reducer.RepoState
 
 
 sealed class RegisterActionState : ActionState() {
@@ -11,9 +11,9 @@ sealed class RegisterActionState : ActionState() {
   data class ShowError(val message:String): RegisterActionState()
 }
 
-data class RegisterSideEffect(
+data class RegisterRepoState(
     val string:String = ""
-) : SideEffect(){
+) : RepoState(){
 
 }
 

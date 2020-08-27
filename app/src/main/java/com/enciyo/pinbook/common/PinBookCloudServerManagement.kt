@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 
 /**
- * If the Heroku server is off, it starts the server.
+ * If the Heroku.com server is off, it starts the server.
  * The server automatically shuts down when there is no request within 30 minutes.
  */
 class PinBookCloudServerManagement @Inject constructor(private val mRepository: PinBookRepository) {
@@ -20,9 +20,9 @@ class PinBookCloudServerManagement @Inject constructor(private val mRepository: 
   private var isServerAvailable = false
   private var isErrorEmittedOneTime = false
 
-  fun check() = flow<AwesomeResult<ResponseBody>> {
+  fun check() = flow {
     while (isServerAvailable.not()) {
-      val response = mRepository.checkServerIsAvailable()
+      val response = mRepository.fetchCheckServerIsAvailable()
       handleServerIsAvailable(response)
     }
   }

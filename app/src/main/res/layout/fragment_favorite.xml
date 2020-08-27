@@ -7,6 +7,8 @@
   android:background="@color/white"
   tools:context=".ui.fav.FavoriteFragment">
 
+
+
   <LinearLayout
     android:paddingTop="@dimen/_32sdp"
     android:layout_width="match_parent"
@@ -22,18 +24,20 @@
       tools:src="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textViewDisplayName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:textColor="@color/grey_900"
-      android:text="Mustafa Kılıç" />
+      tools:text="Mustafa Kılıç" />
 
     <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/textViewUsername"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:textColor="@color/grey_900"
-      android:text="enciyo" />
+      tools:text="enciyo" />
 
 
     <androidx.appcompat.widget.AppCompatTextView

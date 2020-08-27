@@ -11,16 +11,15 @@ class ZoomFadeTransformer(private val paddingPx: Int, private val MIN_SCALE: Flo
     val maxVisiblePages = pagerWidthPx / pageWidthPx
     val center = maxVisiblePages / 2f
     val scale: Float
-    if (position + 0.5f < center - 0.5f || position > center) {
-      scale = MIN_SCALE
+    scale = if (position + 0.5f < center - 0.5f || position > center) {
+      MIN_SCALE
     } else {
-      val coef: Float
-      coef = if (position + 0.5f < center) {
+      val coef: Float = if (position + 0.5f < center) {
         (position + 1 - center) / 0.5f
       } else {
         (center - position) / 0.5f
       }
-      scale = coef * (MAX_SCALE - MIN_SCALE) + MIN_SCALE
+      coef * (MAX_SCALE - MIN_SCALE) + MIN_SCALE
     }
     page.scaleX = scale
     page.scaleY = scale

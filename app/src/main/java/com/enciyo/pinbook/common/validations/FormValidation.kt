@@ -12,7 +12,7 @@ interface FormValidation {
 
   val validationFlow: MutableStateFlow<ValidationModel>
 
-  fun checkAndValidateAll()
+  fun checkAllIsValidate()
 
   fun clear()
 

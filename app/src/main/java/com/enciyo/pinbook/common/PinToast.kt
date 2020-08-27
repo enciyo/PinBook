@@ -10,32 +10,28 @@ import com.enciyo.pinbook.utils.livedata.postEvent
 
 class PinToast(private val applicationContext: Context) {
 
-  private val _toastMessage: MutableLiveData<Event<ToastType>> = MutableLiveData()
-  val toastMessage: LiveData<Event<ToastType>>
-    get() = _toastMessage
+    private val mToastMessage: MutableLiveData<Event<ToastType>> = MutableLiveData()
+    val toastMessage: LiveData<Event<ToastType>>
+        get() = mToastMessage
 
 
-  fun showErrorMessage(message:String)  {
-    _toastMessage.postEvent(ToastType.ErrorMessage(message))
-  }
+    fun showErrorMessage(message: String) {
+        mToastMessage.postEvent(ToastType.ErrorMessage(message))
+    }
 
-  fun showErrorMessage(@StringRes message:Int){
-    _toastMessage.postEvent(ToastType.ErrorMessage(applicationContext.getString(message)))
-  }
+    fun showErrorMessage(@StringRes message: Int) {
+        mToastMessage.postEvent(ToastType.ErrorMessage(applicationContext.getString(message)))
+    }
 
-  fun showSuccessMessage(message: String){
-    _toastMessage.postEvent(ToastType.SuccessMessage(message))
-  }
-  fun showSuccessMessage(@StringRes message: Int){
-    _toastMessage.postEvent(ToastType.SuccessMessage(applicationContext.getString(message)))
-  }
+    fun showSuccessMessage(message: String) {
+        mToastMessage.postEvent(ToastType.SuccessMessage(message))
+    }
 
 
-
-  sealed class ToastType{
-    data class SuccessMessage(val message: String):ToastType()
-    data class ErrorMessage(val message: String): ToastType()
-  }
+    sealed class ToastType {
+        data class SuccessMessage(val message: String) : ToastType()
+        data class ErrorMessage(val message: String) : ToastType()
+    }
 
 
 }

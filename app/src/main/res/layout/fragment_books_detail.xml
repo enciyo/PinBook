@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    tools:context=".ui.detail.BooksDetailFragment">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewBook"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:transitionName="book"
+            android:translationZ="@dimen/_12sdp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:background="@drawable/bg_books_detail"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_50sdp"
+            android:paddingBottom="@dimen/_8sdp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButtonFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/_10sdp"
+                android:labelFor="@id/imageViewBook"
+                android:src="@drawable/ic_baseline_favorite_24"
+                android:translationZ="@dimen/_14sdp"
+                app:backgroundTint="@color/grey_900"
+                app:fabSize="mini" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewBookName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:gravity="center"
+                android:maxLines="2"
+                tools:text="Bir Nefes Gibi" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewBookAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:gravity="center"
+                android:maxLines="2"
+                tools:text="Bir Nefes Gibi" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewBookContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:gravity="center"
+                android:maxLines="10"
+                tools:text="@tools:sample/lorem/random" />
+
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:rating="3"
+                android:theme="@style/RatingBar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextComment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_comment"
+                    android:gravity="top|left"
+                    android:hint="Enter Your Review"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="10"
+                    android:padding="@dimen/_8sdp"
+                    android:scrollbars="vertical"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/grey_600"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/imageButtonSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_8sdp"
+                    app:srcCompat="@drawable/ic_baseline_send_24"
+                    app:tint="@color/grey_900" />
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_comment" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</androidx.core.widget.NestedScrollView>

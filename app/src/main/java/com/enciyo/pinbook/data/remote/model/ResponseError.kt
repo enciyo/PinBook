@@ -1,10 +1,12 @@
 package com.enciyo.pinbook.data.remote.model
 
+import androidx.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 
 @Serializable
+@Keep
 data class ResponseError(
     @SerialName("error")
     val mError: String? = null, // Internal Server GeneralError

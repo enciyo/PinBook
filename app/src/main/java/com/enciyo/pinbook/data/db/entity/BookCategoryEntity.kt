@@ -7,8 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class BookCategoryEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "category_uid")var uid: Int? = null,
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "category_id") val categoryId:String,
     @ColumnInfo(name = "category_name") val categoryName:String
 )
