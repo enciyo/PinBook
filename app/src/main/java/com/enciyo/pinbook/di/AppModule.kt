@@ -15,8 +15,9 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 class AppModule {
 
-  @Singleton
-  @Provides
-  fun provideNetworkConnectivityManager(@ApplicationContext context: Context) : NetworkConnectivityManager = NetworkConnectivityManagerImp(context)
+    @Singleton
+    @Provides
+    fun provideNetworkConnectivityManager(@ApplicationContext context: Context): NetworkConnectivityManager =
+        NetworkConnectivityManagerImp(context)
 
 }

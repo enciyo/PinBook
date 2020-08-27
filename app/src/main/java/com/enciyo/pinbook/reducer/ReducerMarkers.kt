@@ -5,12 +5,16 @@ import javax.inject.Singleton
 
 @Singleton
 interface StateMarker
+
 @Singleton
-abstract class SideEffect : StateMarker
+abstract class RepoState : StateMarker
+
 @Singleton
 abstract class ViewState : StateMarker
+
 @Singleton
 abstract class ActionState : StateMarker
+
 @Singleton
 abstract class UserInteractions
 

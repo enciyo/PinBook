@@ -4,5 +4,6 @@ package com.enciyo.pinbook.domain.model
 
 data class Category(
     val id:String,
-    val name:String
+    val name:String,
+    var isSelected: Boolean = false
 )

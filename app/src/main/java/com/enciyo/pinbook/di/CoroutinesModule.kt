@@ -16,26 +16,25 @@ import kotlinx.coroutines.*
 @InstallIn(ApplicationComponent::class)
 object CoroutinesModule {
 
-  @DefaultDispatcher
-  @JvmStatic
-  @Provides
-  fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
+    @DefaultDispatcher
+    @JvmStatic
+    @Provides
+    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
-  @IoDispatcher
-  @JvmStatic
-  @Provides
-  fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+    @IoDispatcher
+    @JvmStatic
+    @Provides
+    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-  @MainDispatcher
-  @JvmStatic
-  @Provides
-  fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+    @MainDispatcher
+    @JvmStatic
+    @Provides
+    fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
-  @CoScope
-  @Provides
-  fun provideCoroutineScope(@MainDispatcher coroutineDispatcher: CoroutineDispatcher) = CoroutineScope(coroutineDispatcher + Job())
-
-
+    @CoScope
+    @Provides
+    fun provideCoroutineScope(@MainDispatcher coroutineDispatcher: CoroutineDispatcher) =
+        CoroutineScope(coroutineDispatcher + Job())
 
 
 }

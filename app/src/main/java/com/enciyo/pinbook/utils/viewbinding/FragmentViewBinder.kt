@@ -1,4 +1,4 @@
-package com.enciyo.library.viewbinding
+package com.enciyo.pinbook.utils.viewbinding
 
 import android.view.View
 import androidx.annotation.RestrictTo
@@ -7,7 +7,6 @@ import androidx.viewbinding.ViewBinding
 
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)
-
 class FragmentViewBinder<T : ViewBinding>(private val viewBindingClass: Class<T>) {
 
   /**

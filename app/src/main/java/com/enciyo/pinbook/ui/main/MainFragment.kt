@@ -7,39 +7,45 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.transition.TransitionInflater
 import com.enciyo.bottomnavigationgprah.BottomNavigationGraphOnHostChangeCallback
 import com.enciyo.bottomnavigationgprah.Builder
-import com.enciyo.library.viewbinding.viewBinding
+import com.enciyo.pinbook.utils.viewbinding.viewBinding
 import com.enciyo.pinbook.R
 import com.enciyo.pinbook.databinding.FragmentMainBinding
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
   private val mBinding: FragmentMainBinding by viewBinding()
-  private val mViewModel : MainViewModel by viewModels()
+  private val mViewModel: MainViewModel by viewModels()
 
 
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
     val navigation = Builder()
         .setLifecycle(lifecycle)
         .setBottomNavigationGraphHostViewPager(mBinding.navigationBaseView)
         .setFragmentManager(childFragmentManager)
         .setBottomNavigationView(mBinding.bottomNavigationView)
-        .setGraphs(R.navigation.graph_dashboard,R.navigation.graph_fav,R.navigation.grabh_books)
+        .setGraphs(R.navigation.graph_dashboard, R.navigation.graph_fav, R.navigation.grabh_books)
         .build()
+
+    navigation.onHostChangeCallback = onHostChangeCallback()
 
     mBinding.buttonFav.setOnClickListener {
       mBinding.bottomNavigationView.selectedItemId = mBinding.bottomNavigationView.menu.children.toMutableList().get(1).itemId
     }
 
-    navigation.onHostChangeCallback = onHostChangeCallback()
+
+  }
+
+  override fun onPause() {
+    super.onPause()
   }
 
 
-  private fun onHostChangeCallback() = object : BottomNavigationGraphOnHostChangeCallback{
+  private fun onHostChangeCallback() = object : BottomNavigationGraphOnHostChangeCallback {
     override fun onNavigationItemReselected(position: Int): Boolean {
       checkFavButtonIsActive(position)
       return true
@@ -51,17 +57,17 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
   }
 
-  private fun checkFavButtonIsActive(position:Int){
+  private fun checkFavButtonIsActive(position: Int) {
     if (position == 1) onActiveFavButton()
     else onDisableFavButton()
   }
 
-  private fun onActiveFavButton(){
-    mBinding.buttonFav.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!,R.color.red_300))
+  private fun onActiveFavButton() {
+    mBinding.buttonFav.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.red_300))
   }
 
-  private fun onDisableFavButton(){
-    mBinding.buttonFav.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!,R.color.grey_200))
+  private fun onDisableFavButton() {
+    mBinding.buttonFav.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.grey_200))
   }
 
 

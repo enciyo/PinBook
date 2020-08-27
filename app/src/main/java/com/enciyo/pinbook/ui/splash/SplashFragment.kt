@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.enciyo.library.livedata.eventObserve
-import com.enciyo.library.viewbinding.viewBinding
+import com.enciyo.pinbook.utils.livedata.eventObserve
+import com.enciyo.pinbook.utils.viewbinding.viewBinding
 import com.enciyo.pinbook.R
 import com.enciyo.pinbook.common.PinToast
 import com.enciyo.pinbook.databinding.FragmentSplashBinding

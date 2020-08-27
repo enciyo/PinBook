@@ -1,11 +1,11 @@
 package com.enciyo.pinbook.domain.mapper
 
 import com.enciyo.pinbook.data.db.entity.BookEntity
+import com.enciyo.pinbook.data.db.entity.BookFavoriteEntity
 import com.enciyo.pinbook.data.db.entity.BookShowcaseEntity
+import com.enciyo.pinbook.data.remote.model.ResponseBookDetail
 import com.enciyo.pinbook.data.remote.model.ResponseBooks
-import com.enciyo.pinbook.domain.model.Book
-import com.enciyo.pinbook.domain.model.PopularBooks
-import com.enciyo.pinbook.domain.model.ShowcaseBooks
+import com.enciyo.pinbook.domain.model.*
 
 
 fun ResponseBooks.toBook(): Book = Book(
@@ -18,11 +18,31 @@ fun ResponseBooks.toBook(): Book = Book(
     reviewsCount = mBookComments?.size.toString(),
     imageUrl = mBooksImage
 )
+
 fun ResponseBooks.toShowcaseBook(): ShowcaseBooks = ShowcaseBooks(
     bookId = mId.toString(),
     name = mBookName.toString(),
     imageUrl = mBooksImage
 )
+
+
+fun ResponseBookDetail.toBookDetail() = BookDetail(
+    author = mBookAuthor.toString(),
+    category = mBookCategory.toCategory(),
+    name = mBookName.toString(),
+    rating = mBookRating.toString(),
+    imageUrl = mBooksImage.toString(),
+    mInformation = mInformation.toString(),
+    comments = mBookComments?.toComment()?: listOf()
+)
+
+fun ResponseBookDetail.BookComment.toComment() = Comments(
+    comment = this.mComment.toString(),
+    commentDisplayName = this.mCommentAuthor?.mDisplayName.toString()
+)
+
+fun List<ResponseBookDetail.BookComment>.toComment() = this.map { it?.toComment() }
+
 
 fun BookEntity.toBook(): Book = Book(
     id = bookId,
@@ -48,6 +68,7 @@ fun Book.toBookEntity(): BookEntity = BookEntity(
 
 
 fun Book.toPopularBook() = PopularBooks(
+    id = this.id.toInt(),
     imageUrl = this.imageUrl,
     reviewCount = this.reviewsCount,
     author = this.author,
@@ -62,9 +83,10 @@ fun Book.toShowcaseBooks() = ShowcaseBooks(
 )
 
 fun BookShowcaseEntity.toShowcaseBooks() = ShowcaseBooks(
-        bookId = bookId.toString(),
-        imageUrl = this.imageUrl,
-        name = this.bookName)
+    bookId = bookId.toString(),
+    imageUrl = this.imageUrl,
+    name = this.bookName
+)
 
 fun ShowcaseBooks.toShowcaseBooks() = BookShowcaseEntity(
     bookId = bookId.toString(),
@@ -76,3 +98,35 @@ fun BookShowcaseEntity.toShowCaseBook() = BookShowcaseEntity(
     bookId, imageUrl, bookName
 )
 
+fun BookFavoriteEntity.toBook() = PopularBooks(
+    id = bookId.toInt(),
+    name = bookName,
+    author = bookAuthor,
+    rating = bookRating,
+    imageUrl = bookImage,
+    reviewCount = bookReviewsCount
+)
+
+
+fun PopularBooks.toFavoriteBook() = BookFavoriteEntity(
+    bookId = this.id.toString(),
+    bookName = name,
+    bookAuthor = author,
+    bookPageOfCount = "",
+    bookRating = rating,
+    bookReviewsCount = reviewCount,
+    bookImage = imageUrl
+)
+
+
+fun List<BookEntity>.toBook(): List<Book> =
+    map { it.toBook() }
+
+fun List<BookShowcaseEntity>.toShowcaseBooks(): List<ShowcaseBooks> =
+    map { it.toShowcaseBooks() }
+
+fun List<BookFavoriteEntity>.toFavoriteBook(): List<PopularBooks> =
+    map { it.toBook() }
+
+fun List<Book>.toPopularBooks(): List<PopularBooks> =
+    map { it.toPopularBook() }

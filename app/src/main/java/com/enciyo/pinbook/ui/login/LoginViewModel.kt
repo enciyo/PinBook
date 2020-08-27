@@ -20,8 +20,8 @@ class LoginViewModel @ViewModelInject constructor(
     private val mLoginUseCase: LoginUseCase,
     private val mNetworkConnectivityManager: NetworkConnectivityManager,
     private val mFormValidation: FormValidation,
-    @Redux reducer: Reducer<LoginViewState, LoginActionState, LoginSideEffect>
-) : BaseViewModel<LoginViewState, LoginActionState, LoginSideEffect, LoginUserIneractions>(reducer) {
+    @Redux val reducer: Reducer<LoginViewState, LoginActionState, LoginRepoState>
+) : BaseViewModel<LoginViewState, LoginActionState, LoginRepoState, LoginUserIneractions>(reducer) {
 
 
   private val mUsernameFormValidation = FormValidation.ValidationModel("", FormValidation.ValidationType.Username)
@@ -41,7 +41,6 @@ class LoginViewModel @ViewModelInject constructor(
     }
   }
 
-
   private fun initFormValidation() {
     mFormValidation
         .addValidation(mUsernameFormValidation)
@@ -54,29 +53,21 @@ class LoginViewModel @ViewModelInject constructor(
 
   private fun handleValidationResult(validationImp: FormValidation.ValidationModel) {
     when (validationImp.validationType) {
-      is FormValidation.ValidationType.Username -> moveTo(checkUsernameState(validationImp))
-      is FormValidation.ValidationType.Password -> moveTo(checkPasswordState(validationImp))
+      is FormValidation.ValidationType.Username -> viewTo(checkUsernameState(validationImp))
+      is FormValidation.ValidationType.Password -> viewTo(checkPasswordState(validationImp))
     }
-
   }
 
-  private fun checkUsernameState(validationImp: FormValidation.ValidationModel): LoginViewState {
-    return currentViewState().copy(
-        isUsernameError = validationImp.isValid.not()
-    )
-  }
+  private fun checkUsernameState(validationImp: FormValidation.ValidationModel): LoginViewState =
+      currentViewState().copy(isUsernameError = validationImp.isValid.not())
 
-  private fun checkPasswordState(validationImp: FormValidation.ValidationModel): LoginViewState {
-    return currentViewState().copy(
-        isPasswordError = validationImp.isValid.not()
-    )
-  }
-
+  private fun checkPasswordState(validationImp: FormValidation.ValidationModel): LoginViewState =
+      currentViewState().copy(isPasswordError = validationImp.isValid.not())
 
   private fun onLoginClicked() {
     when {
       mNetworkConnectivityManager.isNetworkAvailable.not() -> onConnectionError()
-      mFormValidation.isValid.not() -> mFormValidation.checkAndValidateAll()
+      mFormValidation.isValid.not() -> mFormValidation.checkAllIsValidate()
       mFormValidation.isValid -> fetchLogin()
     }
   }
@@ -91,7 +82,7 @@ class LoginViewModel @ViewModelInject constructor(
   private fun onHandleLoginResult(awesomeResult: AwesomeResult<LoginUseCase.LoginUseCaseResult>) {
     when (awesomeResult) {
       is AwesomeResult.Success -> onSuccess(awesomeResult)
-      is AwesomeResult.Loading -> moveTo(currentViewState().copy(isLoading = true))
+      is AwesomeResult.Loading -> viewTo(currentViewState().copy(isLoading = true))
       is AwesomeResult.ServerError -> onServerError(awesomeResult)
       is AwesomeResult.UnknownError -> onUnknownError(awesomeResult)
       is AwesomeResult.NoNetworkConnection -> onConnectionError()
@@ -99,34 +90,22 @@ class LoginViewModel @ViewModelInject constructor(
   }
 
   private fun onSuccess(awesomeResult: AwesomeResult.Success<LoginUseCase.LoginUseCaseResult>) {
-    moveTo(currentViewState().copy(
-        isSuccess = true,
-        isLoading = false,
-        isFailure = false
-    ))
-          .actionTo(LoginActionState.NavigateToMain)
+    viewTo(currentViewState().copy(isSuccess = true, isLoading = false, isFailure = false))
+        .actionTo(LoginActionState.NavigateToMain)
   }
 
   private fun onServerError(awesomeResult: AwesomeResult.ServerError) {
-    moveTo(
-        currentViewState().copy(
-            isFailure = true,
-            isLoading = false)
-    )
+    viewTo(currentViewState().copy(isFailure = true, isLoading = false))
         .actionTo(LoginActionState.ShowApiErrorMessage(awesomeResult.errorData?.message.toString()))
   }
 
   private fun onUnknownError(awesomeResult: AwesomeResult.UnknownError) {
-    moveTo(currentViewState().copy(
-        isFailure = true
-    ))
+    viewTo(currentViewState().copy(isFailure = true))
         .actionTo(LoginActionState.ShowUnknownErrorMessage(R.string.UnknowError))
   }
 
   private fun onConnectionError() {
-    moveTo(currentViewState().copy(
-        isFailure = true
-    ))
+    viewTo(currentViewState().copy(isFailure = true))
         .actionTo(LoginActionState.ShowUnknownErrorMessage(R.string.NoConnection))
   }
 

@@ -74,7 +74,6 @@ class LoginFragmentTest{
 
   @Test
   fun testEvent() {
-
     Espresso.onView(ViewMatchers.withId(R.id.editTextUsername)).perform(ViewActions.typeText("enciyo"))
     Espresso.onView(ViewMatchers.withId(R.id.editTextPassword)).perform(ViewActions.typeText(""),ViewActions.closeSoftKeyboard())
     Espresso.onView(ViewMatchers.withId(R.id.buttonLogin)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))

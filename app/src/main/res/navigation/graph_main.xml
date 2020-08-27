@@ -50,5 +50,9 @@
     android:id="@+id/mainFragment"
     android:name="com.enciyo.pinbook.ui.main.MainFragment"
     android:label="fragment_main"
-    tools:layout="@layout/fragment_main" />
+    tools:layout="@layout/fragment_main" >
+    <action
+      android:id="@+id/action_mainFragment_to_registerFragment"
+      app:destination="@id/registerFragment" />
+  </fragment>
 </navigation>

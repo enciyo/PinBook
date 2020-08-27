@@ -1,4 +1,4 @@
-package com.enciyo.library.viewbinding
+package com.enciyo.pinbook.utils.viewbinding
 
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding

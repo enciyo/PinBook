@@ -3,7 +3,6 @@ package com.enciyo.pinbook.common
 import javax.inject.Qualifier
 
 
-
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
 annotation class DefaultDispatcher

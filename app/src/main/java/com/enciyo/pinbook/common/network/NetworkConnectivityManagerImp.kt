@@ -5,7 +5,7 @@ import com.enciyo.pinbook.utils.isNetworkAvailable
 
 
 class NetworkConnectivityManagerImp(val context: Context) : NetworkConnectivityManager {
-  override val isNetworkAvailable: Boolean
-    get() = context.isNetworkAvailable()
+    override val isNetworkAvailable: Boolean
+        get() = context.isNetworkAvailable()
 }
 

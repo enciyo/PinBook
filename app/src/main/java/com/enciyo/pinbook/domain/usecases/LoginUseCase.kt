@@ -2,7 +2,7 @@ package com.enciyo.pinbook.domain.usecases
 
 import com.enciyo.pinbook.common.AwesomeResult
 import com.enciyo.pinbook.common.map
-import com.enciyo.pinbook.domain.FlowUseCase
+import com.enciyo.pinbook.domain.BaseFlowUseCase
 import com.enciyo.pinbook.domain.PinBookRepository
 import com.enciyo.pinbook.domain.model.User
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
     private val mRepository: PinBookRepository
-) : FlowUseCase<LoginUseCase.LoginUseCaseParameters, LoginUseCase.LoginUseCaseResult>() {
+) : BaseFlowUseCase<LoginUseCase.LoginUseCaseParameters, LoginUseCase.LoginUseCaseResult>() {
 
 
   data class LoginUseCaseParameters(val username: String, val password: String)
@@ -25,5 +25,6 @@ class LoginUseCase @Inject constructor(
               LoginUseCaseResult(it)
             }
           }
+
 
 }
