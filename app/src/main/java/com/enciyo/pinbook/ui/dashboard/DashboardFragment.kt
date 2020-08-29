@@ -94,12 +94,23 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private fun renderViewState(viewState: DashboardViewState) {
         with(mBinding) {
-            mBinding.progressBarPopularBooks.isVisible = viewState.isLoadingPopularBooks
-            mBinding.progressBarShowCase.isVisible = viewState.isLoadingPopularBooks
-            mBinding.swipeRefreshLayout.isRefreshing = viewState.isRefreshing
-            mBinding.textViewShowCaseBookName.textWithFadeAnimation =
-                viewState.getBookName(mDashboardShowCaseAdapter.currentItems)
-            mBinding.viewPagerShowCase.currentItem = viewState.showCaseBookTitleIndex
+            progressBarPopularBooks.isVisible = viewState.isLoadingPopularBooks
+            progressBarShowCase.isVisible = viewState.isLoadingPopularBooks
+
+            swipeRefreshLayout.isRefreshing = viewState.isRefreshing
+            textViewShowCaseBookName.textWithFadeAnimation = viewState.getBookName(mDashboardShowCaseAdapter.currentItems)
+
+            viewPagerShowCase.currentItem = viewState.showCaseBookTitleIndex
+            viewPagerShowCase.isVisible = viewState.isFailureShowCase.not()
+
+            recyclerViewPopularBooks.isVisible = viewState.isFailurePopularBooks.not()
+
+            textViewShowCaseError.isVisible = viewState.isFailurePopularBooks
+            textViewShowCaseError.textWithFadeAnimation = viewState.showCaseFailureMessage
+
+            textViewPopularBooksError.isVisible = viewState.isFailurePopularBooks
+            textViewPopularBooksError.textWithFadeAnimation = viewState.popularBooksFailureMessage
+
         }
     }
 

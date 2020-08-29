@@ -11,7 +11,7 @@ import com.enciyo.pinbook.domain.usecases.LoginUseCase
 import com.enciyo.pinbook.reducer.Reducer
 import com.enciyo.pinbook.reducer.ReducerImp
 import com.enciyo.pinbook.reducer.State
-import com.enciyo.pinbook.testutils.*
+import com.enciyo.pinbook.testutils.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
@@ -85,17 +85,11 @@ class LoginViewModelTest {
       onEvent(LoginUserIneractions.LoginClicked)
 
       //Than
-      val lastState = state.lastState()
-
       val expectedView = LoginViewState(isFailure = true)
       val expectedAction = LoginActionState.ShowUnknownErrorMessage(R.string.UnknowError)
-      val repoState = LoginRepoState()
 
-      lastState.assertViewState(expectedView)
-      lastState.assertAction(expectedAction)
-
-      lastState.assertSideEffect(repoState)
-
+      assert(currentViewState() == expectedView)
+      assert(currentActionState() == expectedAction)
     }
   }
 
@@ -113,14 +107,11 @@ class LoginViewModelTest {
       onEvent(LoginUserIneractions.LoginClicked)
 
       //Then
-      val lastState = state.lastState()
-
       val expectedView = LoginViewState(isSuccess = true)
       val expectedAction = LoginActionState.NavigateToMain
 
-      lastState.assertViewState(expectedView)
-      lastState.assertAction(expectedAction)
-      lastState.assertSideEffect(null)
+      assert(currentViewState() == expectedView)
+      assert(currentActionState() == expectedAction)
 
     }
   }
@@ -140,14 +131,13 @@ class LoginViewModelTest {
       onEvent(LoginUserIneractions.LoginClicked)
 
       //Then
-      val lastState = state.lastState()
 
       val expectedView = LoginViewState(isFailure = true)
       val expectedAction = LoginActionState.ShowApiErrorMessage(generalError.message)
 
-      lastState.assertViewState(expectedView)
-      lastState.assertAction(expectedAction)
-      lastState.assertSideEffect(null)
+
+      assert(currentViewState() == expectedView)
+      assert(currentActionState() == expectedAction)
 
     }
   }
@@ -166,13 +156,12 @@ class LoginViewModelTest {
       onEvent(LoginUserIneractions.LoginClicked)
 
       //Then
-      val lastState = state.lastState()
 
       val expectedView = LoginViewState(isLoading = true)
 
       assert(currentViewState() == expectedView)
       assert(currentActionState() == null)
-      assert(currentRepoState()?.user?.value== null)
+
     }
   }
 
@@ -189,15 +178,12 @@ class LoginViewModelTest {
       onEvent(LoginUserIneractions.LoginClicked)
 
       //Then
-      val lastState = state.lastState()
-
       val expectedView = LoginViewState(isFailure = true)
       val expectedAction = LoginActionState.ShowUnknownErrorMessage(R.string.NoConnection)
 
 
       assert(currentViewState() == expectedView)
       assert(currentActionState() == expectedAction)
-      assert(currentRepoState()?.user?.value == null)
     }
   }
 

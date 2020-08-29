@@ -6,17 +6,35 @@ import com.enciyo.pinbook.reducer.ViewState
 data class DashboardViewState(
     var isLoadingPopularBooks: Boolean = false,
     var isLoadingShowcaseBooks: Boolean = false,
+    var showCaseFailureMessage: String = "",
+    var popularBooksFailureMessage: String = "",
     var isEmptyPopularBooks: Boolean = false,
     var isEmptyShowcaseBooks: Boolean = false,
     var showCaseBookTitleIndex: Int = 0
 ) : ViewState() {
 
-  fun getBookName(mutableList: MutableList<ShowcaseBooks>): String {
-    return if (mutableList.isNullOrEmpty()) "" else mutableList[showCaseBookTitleIndex].name ?: ""
-  }
+    val isFailureShowCase: Boolean
+        get() {
+            return showCaseFailureMessage.isBlank().not()
+        }
 
-  val isRefreshing
-    get() = (isEmptyPopularBooks.not() && isEmptyShowcaseBooks.not()) && (isLoadingPopularBooks || isLoadingPopularBooks)
+    val isFailurePopularBooks: Boolean
+        get() {
+            return popularBooksFailureMessage.isBlank().not()
+        }
+
+
+
+
+
+
+    fun getBookName(mutableList: MutableList<ShowcaseBooks>): String {
+        return if (mutableList.isNullOrEmpty()) "" else mutableList[showCaseBookTitleIndex].name
+            ?: ""
+    }
+
+    val isRefreshing
+        get() = (isEmptyPopularBooks.not() && isEmptyShowcaseBooks.not()) && (isLoadingPopularBooks || isLoadingPopularBooks)
 
 }
 

@@ -35,7 +35,6 @@ class SplashViewModel @ViewModelInject constructor(
 
 
   fun checkServerIsAvailable() {
-    checkUserIsThere()
     mPinBookCloudServerManagement.check()
         .onEach(::onHandleServerIsAvailableResult)
         .launchIn(viewModelScope)

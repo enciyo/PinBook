@@ -9,6 +9,13 @@ var ui: CoroutineDispatcher = Dispatchers.Main
 var io: CoroutineDispatcher =  Dispatchers.IO
 var background: CoroutineDispatcher = Dispatchers.Default
 
+
+fun ViewModel.defaultJob(block: suspend CoroutineScope.() -> Unit): Job {
+  return viewModelScope.launch {
+    block.invoke(this)
+  }
+}
+
 fun ViewModel.uiJob(block: suspend CoroutineScope.() -> Unit): Job {
   return viewModelScope.launch(ui) {
     block()

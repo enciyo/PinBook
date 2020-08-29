@@ -17,11 +17,12 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <androidx.appcompat.widget.AppCompatImageView
-      android:layout_width="wrap_content"
+      android:layout_width="@dimen/_80sdp"
       android:layout_height="@dimen/_80sdp"
       android:layout_gravity="center"
-      app:srcCompat="@drawable/logo_transparent"
-      tools:src="@tools:sample/avatars" />
+      app:srcCompat="@drawable/ic_baseline_account_circle_24"
+        app:tint="@color/grey_900"
+      tools:src="@drawable/ic_baseline_account_circle_24" />
 
     <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/textViewDisplayName"
