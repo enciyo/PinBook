@@ -64,6 +64,7 @@ class BooksDetailViewModel @ViewModelInject constructor(
     private fun insertFavoriteBook(result: AwesomeResult<PopularBooks>) {
         when (result) {
             is AwesomeResult.Success -> viewTo(currentViewState().copy(isFavorite = true))
+                .actionTo(BookDetailActionState.ShowSuccessAddedFavoriteBook)
             is AwesomeResult.Loading -> Unit
             else -> viewTo(currentViewState().copy(isFavorite = false))
         }
@@ -72,6 +73,7 @@ class BooksDetailViewModel @ViewModelInject constructor(
     private fun deleteFavoriteBook(result: AwesomeResult<Boolean>) {
         when (result) {
             is AwesomeResult.Success -> viewTo(currentViewState().copy(isFavorite = false))
+                .actionTo(BookDetailActionState.ShowSuccessRemovedFavoriteBook)
             else -> viewTo(currentViewState().copy(isFavorite = true))
         }
     }

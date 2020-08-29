@@ -57,25 +57,6 @@ class BooksAdapter :
         holder.initView(getItem(position))
     }
 
-    companion object {
-        val popularBooksDiffUtils
-            get() = object : DiffUtil.ItemCallback<PopularBooks>() {
-                override fun areItemsTheSame(
-                    oldItem: PopularBooks,
-                    newItem: PopularBooks
-                ): Boolean = oldItem.name == newItem.name
-
-                override fun areContentsTheSame(
-                    oldItem: PopularBooks,
-                    newItem: PopularBooks
-                ): Boolean = oldItem == newItem
-            }
-
-        sealed class BooksAdapterEvents{
-            data class Clicked(val books: PopularBooks) : BooksAdapterEvents()
-        }
-
-    }
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -105,6 +86,27 @@ class BooksAdapter :
             }
                 .toList()
     }
+
+    companion object {
+        val popularBooksDiffUtils
+            get() = object : DiffUtil.ItemCallback<PopularBooks>() {
+                override fun areItemsTheSame(
+                    oldItem: PopularBooks,
+                    newItem: PopularBooks
+                ): Boolean = oldItem.name == newItem.name
+
+                override fun areContentsTheSame(
+                    oldItem: PopularBooks,
+                    newItem: PopularBooks
+                ): Boolean = oldItem == newItem
+            }
+
+        sealed class BooksAdapterEvents{
+            data class Clicked(val books: PopularBooks) : BooksAdapterEvents()
+        }
+
+    }
+
 
 
 }

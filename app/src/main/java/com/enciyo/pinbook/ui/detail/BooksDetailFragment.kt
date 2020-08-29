@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import com.enciyo.pinbook.R
+import com.enciyo.pinbook.common.PinToast
 import com.enciyo.pinbook.databinding.FragmentBooksDetailBinding
 import com.enciyo.pinbook.di.GlideApp
 import com.enciyo.pinbook.domain.model.BookDetail
@@ -24,6 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -32,6 +34,9 @@ class BooksDetailFragment : BottomSheetDialogFragment() {
     private val mBinding: FragmentBooksDetailBinding by viewBinding()
     private val mViewModel: BooksDetailViewModel by viewModels()
     private val mCommentAdapter: BookCommentsAdapter = BookCommentsAdapter()
+
+    @Inject
+    lateinit var mPintToast:PinToast
 
 
     override fun onCreateView(
@@ -91,16 +96,19 @@ class BooksDetailFragment : BottomSheetDialogFragment() {
 
     private fun renderBookDetailState(viewState: BookDetailViewState) {
         with(mBinding) {
-            mBinding.editTextComment.isEnabled = viewState.isCommentEnable
-            mBinding.ratingBar.isEnabled = viewState.isCommentEnable
-            mBinding.imageButtonSend.isEnabled = viewState.isCommentEnable
-            mBinding.ratingBar.rating = viewState.ratingBar
-            mBinding.floatingActionButtonFavorite.imageTintList = viewState.getFavoriteBackgroundColor(requireContext())
+           editTextComment.isEnabled = viewState.isCommentEnable
+           ratingBar.isEnabled = viewState.isCommentEnable
+           imageButtonSend.isEnabled = viewState.isCommentEnable
+           ratingBar.rating = viewState.ratingBar
+           floatingActionButtonFavorite.imageTintList = viewState.getFavoriteBackgroundColor(requireContext())
         }
     }
 
     private fun renderBookDetailActionState(actionState: BookDetailActionState) {
-
+        when(actionState){
+            BookDetailActionState.ShowSuccessAddedFavoriteBook -> mPintToast.showSuccessMessage(getString(R.string.TextSuccesAddedFavorite))
+            BookDetailActionState.ShowSuccessRemovedFavoriteBook -> mPintToast.showSuccessMessage(getString(R.string.TextSuccessRemovedFavorite))
+        }
     }
 
     private fun renderBookDetailRepoState(repoState: BookDetailRepoState) {

@@ -8,4 +8,6 @@
   <string name="RegisterValidationError">Tüm Alanları Doldurunuz!</string>
   <string name="ValidationErrorUsername">Kullanıcı adı boş olamaz!</string>
   <string name="ValidationErrorPassword">Parola boş olamaz!</string>
+    <string name="TextSuccesAddedFavorite">Added Favorite</string>
+  <string name="TextSuccessRemovedFavorite">Removed Favorite</string>
 </resources>
